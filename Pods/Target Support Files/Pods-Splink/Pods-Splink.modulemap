@@ -1,0 +1,6 @@
+framework module Pods_Splink {
+  umbrella header "Pods-Splink-umbrella.h"
+
+  export *
+  module * { export * }
+}
