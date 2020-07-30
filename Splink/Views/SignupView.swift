@@ -10,28 +10,34 @@ import SwiftUI
 
 struct SignupView: View {
     
-    @State var username: String = ""
+    @State var firstname: String = ""
+    @State var lastname: String = ""
     @State var email: String = ""
     @State var password: String = ""
     @State var error: String = ""
     @EnvironmentObject var session: SessionStore
     
     func signUp(){
-        session.signUp(email: email, password: password){(result,error) in
+        session.signUp(email: email, password: password, firstname: firstname, lastname: lastname){(result,error) in
             if let error = error{
                 self.error = error.localizedDescription
             }else {
                 self.email = ""
                 self.password = ""
+                self.firstname = ""
+                self.lastname = ""
             }
         }
+        
     }
     
     var body: some View {
         VStack{
             Image(IMAGE_USER_PLACEHOLDER).resizable().aspectRatio(contentMode: .fill).frame(width: 80, height: 80).clipShape(Circle()).padding(.bottom, 80)
             
-            UsernameTextField(username: $username)
+            FirstNameTextField(firstname: $firstname)
+            LastNameTextField(lastname: $lastname)
+            
             
             EmailTextField(email: $email)   //email text field
             

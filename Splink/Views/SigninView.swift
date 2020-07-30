@@ -13,6 +13,7 @@ struct SigninView: View {
     @State var email: String = ""
     @State var password: String = ""
     @State var error: String = ""
+    @State var index = 0
     @EnvironmentObject var session: SessionStore
     
     func getUser(){
@@ -30,13 +31,11 @@ struct SigninView: View {
         }
     }
     
+
     var body: some View {
         Group{
         if(session.session != nil){
-            Text("Welcome back user!")
-            Button(action: session.signOut){
-                Text("Sign Out")
-            }
+            Text("hello")
         }else{
             NavigationView{
                 VStack {
@@ -51,7 +50,9 @@ struct SigninView: View {
                 
                 PasswordTextField(password: $password) //password text field
                 
+                   
                 SignInButton(action: signIn, label: TEXT_SIGN_IN)  //sign in button
+                    
                     if (error != ""){
                         Text(error).font(.system(size: 14, weight: .semibold)).foregroundColor(.red).padding()
                     }
